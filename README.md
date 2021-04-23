@@ -12,6 +12,6 @@ PREREQUISITE
 pip install matplotlib pyperclip
 
 watch how it works
-https://drive.google.com/file/d/0B3xDk1vHvTvoQ2NYWXY5YlRILUk/view?usp=sharing
+https://drive.google.com/file/d/11K1wzA-iXxqMMWQZX_syb1WqbnOrHTnK/view?usp=sharing
 
 
