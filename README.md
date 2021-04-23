@@ -10,5 +10,7 @@ pyperclip for copy/paste to clipboard
 PREREQUISITE
 pip install matplotlib pyperclip
 
+watch how it works
+https://drive.google.com/file/d/0B3xDk1vHvTvoQ2NYWXY5YlRILUk/view?usp=sharing
 
 
