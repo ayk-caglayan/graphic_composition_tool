@@ -1,8 +1,8 @@
-#%matplotlib
+%matplotlib
 import matplotlib.pyplot as plt
 from matplotlib.backend_bases import MouseButton, KeyEvent
 import pyperclip
-#plt.ion() #matplotlib interaction on
+plt.ion() #matplotlib interaction on
 
 def redraw():
     ax.clear()
@@ -35,7 +35,7 @@ global activated_plot_nr
 activated_plot_nr=0 #this functions as a flag for activated plot to insert and export the data
     
 fig, ax = plt.subplots()
-fig.suptitle("Clicking LEFT adds new point, RIGHT removes it, MIDDLE copies the activated plot to clipboard \n "+color_map)
+fig.suptitle("Clicking LEFT adds new point, RIGHT removes it, MIDDLE or ctrl+c copies the activated plot to clipboard \n "+color_map)
 
 def plot_select(event):
     global activated_plot_nr
@@ -47,16 +47,22 @@ def plot_select(event):
     else:
         print("invalid input")
         
+def copy_w_ctrl_c(event):
+    if event.key=='ctrl+c':
+        print("The Data of the ", colors[activated_plot_nr].capitalize(), "Plot NO:", activated_plot_nr, "Pasted To Clipboard ", str([list(plots[activated_plot_nr].keys()), list(plots[activated_plot_nr].values())]))
+        pyperclip.copy(str([list(plots[activated_plot_nr].keys()), list(plots[activated_plot_nr].values())]))
+        
+        
 def on_click(event):
     if event.button is MouseButton.LEFT:
         x, y = event.xdata, event.ydata
         plots[activated_plot_nr][int(x)]=int(y)
-        print(plots)
+        #print(plots)
         redraw()
         
     if event.button is MouseButton.RIGHT:
         x, y = event.xdata, event.ydata
-        print(x,y)
+        #print(x,y)
         plots[activated_plot_nr].pop(int(x))
         print(plots[activated_plot_nr].values())
         
@@ -68,6 +74,7 @@ def on_click(event):
         
 plt.connect('key_press_event', plot_select)        
 plt.connect('button_press_event', on_click)
+plt.connect('key_press_event', copy_w_ctrl_c)
 
 plt.xlim([int(x_start), int(x_end)])
 plt.ylim([int(y_start), int(y_end)])
