@@ -1,8 +1,8 @@
-%matplotlib
+#%matplotlib
 import matplotlib.pyplot as plt
 from matplotlib.backend_bases import MouseButton, KeyEvent
 import pyperclip
-plt.ion() #matplotlib interaction on
+#plt.ion() #matplotlib interaction on
 
 def redraw():
     ax.clear()
