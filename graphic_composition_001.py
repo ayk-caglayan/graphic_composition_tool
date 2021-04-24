@@ -39,14 +39,15 @@ fig.suptitle("Clicking LEFT adds new point, RIGHT removes it, MIDDLE or ctrl+c c
 
 def plot_select(event):
     global activated_plot_nr
-    keyy=int(event.key)
-    if keyy<10 and keyy<int(nr_of_plots):
-        activated_plot_nr=keyy
-        print('plot number ', keyy, ' selected')
-        redraw()
-    else:
+    try:
+        keyy=int(event.key)
+        if keyy<10 and keyy<int(nr_of_plots):
+            activated_plot_nr=keyy
+            print('plot number ', keyy, ' selected')
+            redraw()
+    except:
         print("invalid input")
-        
+
 def copy_w_ctrl_c(event):
     if event.key=='ctrl+c':
         print("The Data of the ", colors[activated_plot_nr].capitalize(), "Plot NO:", activated_plot_nr, "Pasted To Clipboard ", str([list(plots[activated_plot_nr].keys()), list(plots[activated_plot_nr].values())]))
@@ -57,15 +58,11 @@ def on_click(event):
     if event.button is MouseButton.LEFT:
         x, y = event.xdata, event.ydata
         plots[activated_plot_nr][int(x)]=int(y)
-        #print(plots)
         redraw()
         
     if event.button is MouseButton.RIGHT:
         x, y = event.xdata, event.ydata
-        #print(x,y)
         plots[activated_plot_nr].pop(int(x))
-        print(plots[activated_plot_nr].values())
-        
         redraw()
 
     if event.button is MouseButton.MIDDLE:
