@@ -9,8 +9,22 @@ x_start=input("X axis starting value: ")
 x_end=input("X axis ending value: ")
 y_start=input("Y axis starting value: ")
 y_end=input("Y axis ending value: ")
+
+x_range=int(x_end)-int(x_start)
+y_range=int(y_end)-int(y_start)
+""" 
 x_ticks=int((int(x_end)-int(x_start))/20)
 y_ticks=int((int(y_end)-int(y_start))/10)
+"""
+if x_range<20:
+    x_ticks=1
+elif x_range>=20:
+    x_ticks=int(x_range/20)
+    
+if y_range<10:
+    y_ticks=1
+elif y_range>=10:
+    y_ticks=int(y_range/10)
 
 plots={} #dictionary of plots (btw. plots are dictionaries of data points)
 colors={0: 'blue', 1: 'green', 2:'red', 3: 'yellow', 4:'brown', 5: 'grey', 6: 'olive', 7: 'orange', 8: 'magenta', 9: 'darkgreen'}
